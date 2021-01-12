@@ -12,13 +12,19 @@ export class User {
     @Column()
     email: string;
 
-    @Column()
-    email_verified: boolean;
+    @Column({
+      name: "email_verified"
+    })
+    emailVerified: boolean;
 
-    @Column()
-    phone_number: number;
+    @Column({
+      name: "phone_number"
+    })
+    phoneNumber: string;
 
-    @Column()
-    phone_number_verified: boolean;
+    @Column({
+      name: "phone_number_verified"
+    })
+    phoneNumberVerified: boolean;
 
 }
