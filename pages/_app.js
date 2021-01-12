@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 import { Provider } from "next-auth/client";
-import "reflect-metadata";
 
 function MyApp({ Component, pageProps }) {
   return (
