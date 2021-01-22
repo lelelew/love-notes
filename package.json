@@ -15,6 +15,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "reflect-metadata": "^0.1.13",
+    "twilio": "^3.55.0",
     "typeorm": "^0.2.29"
   },
   "devDependencies": {

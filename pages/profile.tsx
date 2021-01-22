@@ -10,7 +10,10 @@ import {
   Field,
   FieldProps,
 } from "formik";
-import { setPhoneNumber } from "../client/services/user-service";
+import {
+  setPhoneNumber,
+  requestPhoneNumberVerification,
+} from "../client/services/user-service";
 
 interface Values {
   phoneNumber: string;
@@ -59,6 +62,9 @@ export default function Profile() {
             <button type="submit">Submit</button>
           </Form>
         </Formik>
+        <button onClick={requestPhoneNumberVerification}>
+          verify phone number
+        </button>
       </div>
       );
     </>

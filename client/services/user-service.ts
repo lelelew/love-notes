@@ -20,3 +20,22 @@ export async function setPhoneNumber(userId, phoneNumber): Promise<boolean> {
   }
   return true;
 }
+
+export async function requestPhoneNumberVerification() {
+  try {
+    const response = await fetch(
+      "/api/users/request-phone-number-verification",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // body: JSON.stringify({ userId, phoneNumber }),
+      },
+    );
+  } catch (e) {
+    console.log("error verifying phone number");
+    return false;
+  }
+  return true;
+}
