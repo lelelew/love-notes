@@ -35,6 +35,12 @@ export class User extends Adapters.TypeORM.Models.User.model {
     name: "phone_number_verified",
   })
   phoneNumberVerified: boolean;
+
+  @Column({
+    type: "varchar",
+    name: "verification_code",
+  })
+  verificationCode: string;
 }
 
 export const UserSchema = {
