@@ -13,19 +13,32 @@ import {
 import {
   setPhoneNumber,
   requestPhoneNumberVerification,
+  checkVerificationCode,
 } from "../client/services/user-service";
 
 interface Values {
   phoneNumber: string;
 }
 
+interface VerificationValues {
+  verificationCode: string;
+}
+
 export default function Profile() {
   const [session, loading] = useSession();
+
   async function submitSetPhoneNumber(
     values: Values,
     { setSubmitting }: FormikHelpers<Values>,
   ) {
     await setPhoneNumber(session.user.id, values.phoneNumber);
+  }
+
+  async function submitVerificationCode(
+    values: VerificationValues,
+    { setSubmitting }: FormikHelpers<VerificationValues>,
+  ) {
+    await checkVerificationCode(values.verificationCode);
   }
 
   return (
@@ -65,6 +78,24 @@ export default function Profile() {
         <button onClick={requestPhoneNumberVerification}>
           verify phone number
         </button>
+        <Formik
+          enableReinitialize={true}
+          initialValues={{
+            verificationCode: "",
+          }}
+          onSubmit={submitVerificationCode}
+        >
+          <Form>
+            <label htmlFor="verificationCode">Verification Code</label>
+            <Field
+              id="verificationCode"
+              name="verificationCode"
+              placeholder="123456"
+            />
+
+            <button type="submit">Submit</button>
+          </Form>
+        </Formik>
       </div>
       );
     </>

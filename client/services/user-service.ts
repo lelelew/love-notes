@@ -39,3 +39,19 @@ export async function requestPhoneNumberVerification() {
   }
   return true;
 }
+
+export async function checkVerificationCode(verificationCode) {
+  try {
+    const response = await fetch("/api/users/verify-phone-number", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ verificationCode }),
+    });
+  } catch (e) {
+    console.log("error verifying phone number");
+    return false;
+  }
+  return true;
+}
