@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
 import styles from "../styles/Home.module.css";
 import {
@@ -16,18 +16,22 @@ import {
   checkVerificationCode,
 } from "../client/services/user-service";
 
-interface Values {
-  phoneNumber: string;
+interface VerificationValues {
+  verificationCode: string;
 }
 
-export default function Profile() {
+export default function VerifyPhoneNumber() {
   const [session, loading] = useSession();
+  const [phoneNumberVerified, setPhoneNumberVerified] = useState<
+    boolean | undefined
+  >();
 
-  async function submitSetPhoneNumber(
-    values: Values,
-    { setSubmitting }: FormikHelpers<Values>,
+  async function submitVerificationCode(
+    values: VerificationValues,
+    { setSubmitting }: FormikHelpers<VerificationValues>,
   ) {
-    await setPhoneNumber(session.user.id, values.phoneNumber);
+    let result = await checkVerificationCode(values.verificationCode);
+    setPhoneNumberVerified(result);
   }
 
   return (
@@ -45,28 +49,27 @@ export default function Profile() {
         </>
       )}
       <div className={styles.container}>
-        <h1>Signup</h1>
+        <button onClick={requestPhoneNumberVerification}>
+          send new verification code
+        </button>
         <Formik
           enableReinitialize={true}
           initialValues={{
-            phoneNumber: "",
+            verificationCode: "",
           }}
-          onSubmit={submitSetPhoneNumber}
+          onSubmit={submitVerificationCode}
         >
           <Form>
-            <label htmlFor="phoneNumber">Phone Number</label>
+            <label htmlFor="verificationCode">Verification Code</label>
             <Field
-              id="phoneNumber"
-              name="phoneNumber"
-              placeholder="415-123-4567"
+              id="verificationCode"
+              name="verificationCode"
+              placeholder="123456"
             />
 
             <button type="submit">Submit</button>
           </Form>
         </Formik>
-        <button onClick={requestPhoneNumberVerification}>
-          verify phone number
-        </button>
       </div>
       );
     </>

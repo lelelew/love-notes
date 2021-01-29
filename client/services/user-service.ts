@@ -49,6 +49,8 @@ export async function checkVerificationCode(verificationCode) {
       },
       body: JSON.stringify({ verificationCode }),
     });
+    let result = await response.json();
+    return result.verified;
   } catch (e) {
     console.log("error verifying phone number");
     return false;
