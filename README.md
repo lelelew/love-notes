@@ -32,3 +32,14 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Functionality
+
+- User can sign up for an account
+- Random 6 digit code is generated & texted to user to verify phone number
+- User can enter verification code to verify phone number
+
+## Planned Features To Be Added
+
+- User can schedule messages to be sent
+- If sending messages to a different phone number, the phone number can be validated
