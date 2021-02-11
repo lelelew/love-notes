@@ -12,7 +12,7 @@ export class Message extends Adapters.TypeORM.Models.Message.model {
     type: "bigint",
     name: "user_id",
   })
-  userId: number;
+  userId: string;
 
   @Column({
     type: "varchar",
