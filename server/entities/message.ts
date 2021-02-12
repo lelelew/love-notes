@@ -1,10 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-import Adapters from "next-auth/adapters";
-// const typeorm = require("typeorm");
-// const { Entity, PrimaryGeneratedColumn, Column } = typeorm;
 
 @Entity("messages")
-export class Message extends Adapters.TypeORM.Models.Message.model {
+export class Message {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -46,16 +43,3 @@ export class Message extends Adapters.TypeORM.Models.Message.model {
   })
   updatedAt: string;
 }
-
-export const MessageSchema = {
-  name: "Message",
-  target: Message,
-  columns: {
-    ...Adapters.TypeORM.Models.Message.schema.columns,
-    // Adds a phoneNumber to the User schema
-    // phoneNumber: {
-    //   type: "varchar",
-    //   nullable: true,
-    // },
-  },
-};

@@ -6,13 +6,14 @@ export async function createMessage(
   text: string,
   date: string,
   time: number,
-): Promise<string> {
-  const userRepository = getRepository(Message); // you can also get it via getConnection().getRepository() or getManager().getRepository()
+): Promise<Message> {
+  const messageRepository = getRepository(Message); // you can also get it via getConnection().getRepository() or getManager().getRepository()
 
-  const user = await userRepository.findOne(userId);
-  user.text = text;
-  user.date = date;
-  user.time = time;
-  await userRepository.save(user);
-  return user.text;
+  const message = {
+    userId,
+    text,
+    date,
+    time,
+  };
+  return await messageRepository.save(message);
 }
