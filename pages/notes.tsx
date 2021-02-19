@@ -9,6 +9,7 @@ import {
   Field,
   FieldProps,
 } from "formik";
+import { createMessage } from "../client/services/message-service";
 
 interface MessageInput {
   text: string;
@@ -21,7 +22,8 @@ export default function Notes() {
     values: MessageInput,
     { setSubmitting }: FormikHelpers<MessageInput>,
   ) {
-    console.log(values);
+    // need to add date picker to pass in date and time here
+    // createMessage(values.text, "02/21/21", 5);
   }
 
   return (

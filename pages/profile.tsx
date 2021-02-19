@@ -27,7 +27,7 @@ export default function Profile() {
     values: Values,
     { setSubmitting }: FormikHelpers<Values>,
   ) {
-    await setPhoneNumber(session.user.id, values.phoneNumber);
+    await setPhoneNumber(values.phoneNumber);
   }
 
   return (

@@ -44,6 +44,7 @@ const options = {
   callbacks: {
     session: async (session, user) => {
       if (session && user) {
+        session.user.id = user.id;
         session.user.phoneNumber = user.phoneNumber;
       }
       return Promise.resolve(session);

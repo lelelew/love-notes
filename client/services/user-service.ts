@@ -1,18 +1,17 @@
 /**
  * Make a request to the API to set the phone number of a given user
- * @param userId id of user whose phone number you want to update
  * @param phoneNumber should be in E164 format
  *
  * @returns {boolean} true if successful, false otherwise
  */
-export async function setPhoneNumber(userId, phoneNumber): Promise<boolean> {
+export async function setPhoneNumber(phoneNumber: string): Promise<boolean> {
   try {
     const response = await fetch("/api/users/set-phone-number", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userId, phoneNumber }),
+      body: JSON.stringify({ phoneNumber }),
     });
   } catch (e) {
     console.log("error setting phone number");
@@ -30,7 +29,6 @@ export async function requestPhoneNumberVerification() {
         headers: {
           "Content-Type": "application/json",
         },
-        // body: JSON.stringify({ userId, phoneNumber }),
       },
     );
   } catch (e) {
@@ -40,7 +38,7 @@ export async function requestPhoneNumberVerification() {
   return true;
 }
 
-export async function checkVerificationCode(verificationCode) {
+export async function checkVerificationCode(verificationCode: string) {
   try {
     const response = await fetch("/api/users/verify-phone-number", {
       method: "POST",

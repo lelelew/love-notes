@@ -8,7 +8,11 @@
  * @returns {boolean} true if successful, false otherwise
  */
 
-export async function createMessage(text, date, time): Promise<boolean> {
+export async function createMessage(
+  text: string,
+  date: string,
+  time: number,
+): Promise<boolean> {
   try {
     const response = await fetch("/api/messages/create-message", {
       method: "POST",
