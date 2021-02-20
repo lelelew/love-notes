@@ -13,6 +13,8 @@ import { createMessage } from "../client/services/message-service";
 
 interface MessageInput {
   text: string;
+  date: string;
+  time: string;
 }
 
 export default function Notes() {
@@ -22,8 +24,7 @@ export default function Notes() {
     values: MessageInput,
     { setSubmitting }: FormikHelpers<MessageInput>,
   ) {
-    // need to add date picker to pass in date and time here
-    // createMessage(values.text, "02/21/21", 5);
+    createMessage(values.text, values.date.toString(), values.time);
   }
 
   return (
@@ -46,6 +47,8 @@ export default function Notes() {
           enableReinitialize={true}
           initialValues={{
             text: "",
+            date: "",
+            time: "00:00",
           }}
           onSubmit={submitMessageInput}
         >
@@ -58,6 +61,12 @@ export default function Notes() {
               name="text"
               placeholder="Enter your text message here."
             />
+
+            <label htmlFor="date">Date to send message:</label>
+            <Field type="date" id="date" name="date" />
+
+            <label htmlFor="time">Time to send message:</label>
+            <Field type="time" id="time" name="time" />
 
             <button type="submit">Submit</button>
           </Form>

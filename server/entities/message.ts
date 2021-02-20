@@ -22,9 +22,10 @@ export class Message {
   date: string;
 
   @Column({
-    type: "smallint",
+    type: "varchar",
+    length: 5,
   })
-  time: number;
+  time: string;
 
   @Column({
     type: "boolean",

@@ -5,7 +5,7 @@ export async function createMessage(
   userId: string,
   text: string,
   date: string,
-  time: number,
+  time: string,
 ): Promise<Message> {
   const messageRepository = getRepository(Message); // you can also get it via getConnection().getRepository() or getManager().getRepository()
 

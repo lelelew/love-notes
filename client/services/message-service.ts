@@ -11,7 +11,7 @@
 export async function createMessage(
   text: string,
   date: string,
-  time: number,
+  time: string,
 ): Promise<boolean> {
   try {
     const response = await fetch("/api/messages/create-message", {
