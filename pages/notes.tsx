@@ -22,9 +22,12 @@ export default function Notes() {
 
   async function submitMessageInput(
     values: MessageInput,
-    { setSubmitting }: FormikHelpers<MessageInput>,
+    helpers: FormikHelpers<MessageInput>,
+    // { setSubmitting }: FormikHelpers<MessageInput>,
   ) {
-    createMessage(values.text, values.date.toString(), values.time);
+    helpers.setSubmitting(true),
+      createMessage(values.text, values.date.toString(), values.time);
+    helpers.setSubmitting(false), helpers.resetForm();
   }
 
   return (
