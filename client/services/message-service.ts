@@ -29,3 +29,14 @@ export async function createMessage(
   }
   return true;
 }
+
+export async function listMessages() {
+  try {
+    const response = await fetch("/api/messages/list-messages");
+    return response;
+  } catch (e) {
+    console.log("error listing messages");
+    return false;
+  }
+  return true;
+}
