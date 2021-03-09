@@ -8,6 +8,8 @@
  * @returns {boolean} true if successful, false otherwise
  */
 
+import { Message } from "../../server/entities/message";
+
 export async function createMessage(
   text: string,
   date: string,
@@ -30,13 +32,19 @@ export async function createMessage(
   return true;
 }
 
-export async function listMessages() {
+export async function listMessages(): Promise<Message[]> {
   try {
-    const response = await fetch("/api/messages/list-messages");
-    return response;
+    const response = await fetch("/api/messages/list-messages", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let result = await response.json();
+    return result;
   } catch (e) {
     console.log("error listing messages");
-    return false;
+    return [];
   }
-  return true;
+  return [];
 }
