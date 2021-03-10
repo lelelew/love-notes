@@ -38,8 +38,9 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 - User can sign up for an account
 - Random 6 digit code is generated & texted to user to verify phone number
 - User can enter verification code to verify phone number
+- User can schedule messages to be sent
+- User can view all scheduled messages
 
 ## Planned Features To Be Added
 
-- User can schedule messages to be sent
 - If sending messages to a different phone number, the phone number can be validated
