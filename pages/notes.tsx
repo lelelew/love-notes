@@ -10,6 +10,7 @@ import {
   FieldProps,
 } from "formik";
 import { createMessage } from "../client/services/message-service";
+import { useMessages } from "../client/hooks/use-messages";
 
 interface MessageInput {
   text: string;
@@ -19,6 +20,9 @@ interface MessageInput {
 
 export default function Notes() {
   const [session, loading] = useSession();
+  const messages = useMessages();
+
+  // console.log(messages);
 
   async function submitMessageInput(
     values: MessageInput,
@@ -74,6 +78,27 @@ export default function Notes() {
             <button type="submit">Submit</button>
           </Form>
         </Formik>
+      </div>
+      <div className={styles.container} id="scheduledMessages">
+        Scheduled Messages
+        <div>
+          Text
+          {messages.map((message) => (
+            <ul key={message.id}>{message.text}</ul>
+          ))}
+        </div>
+        <div>
+          Date Scheduled To Be Sent
+          {messages.map((message) => (
+            <ul key={message.id}>{message.date}</ul>
+          ))}
+        </div>
+        <div>
+          Time Scheduled To Be Sent
+          {messages.map((message) => (
+            <ul key={message.id}>{message.time}</ul>
+          ))}
+        </div>
       </div>
       );
     </>
