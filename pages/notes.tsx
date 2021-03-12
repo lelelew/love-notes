@@ -20,7 +20,7 @@ interface MessageInput {
 
 export default function Notes() {
   const [session, loading] = useSession();
-  const messages = useMessages();
+  const [messages, loadMessages] = useMessages();
 
   // console.log(messages);
 
@@ -29,9 +29,11 @@ export default function Notes() {
     helpers: FormikHelpers<MessageInput>,
     // { setSubmitting }: FormikHelpers<MessageInput>,
   ) {
-    helpers.setSubmitting(true),
-      createMessage(values.text, values.date.toString(), values.time);
-    helpers.setSubmitting(false), helpers.resetForm();
+    helpers.setSubmitting(true);
+    await createMessage(values.text, values.date.toString(), values.time);
+    await loadMessages();
+    helpers.setSubmitting(false);
+    helpers.resetForm();
   }
 
   return (
